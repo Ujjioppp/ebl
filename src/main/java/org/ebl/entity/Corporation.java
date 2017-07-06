@@ -1,18 +1,20 @@
 package org.ebl.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.Set;
 
 /**
  * Created by yeli on 05/07/2017.
  */
 @Table(name = "corporation")
 @Entity
-public class Corporation {
-    @Id
-    @GeneratedValue
-    private Long id;
+@JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler"})
+public class Corporation extends BaseEntity {
 
     @Column(name = "name", nullable = false)
     private String name;
@@ -20,21 +22,10 @@ public class Corporation {
     @Column(name = "mark", nullable = false, length = 5, scale = 2)
     private BigDecimal mark;
 
-    @Temporal(TemporalType.DATE)
-    @Column(name = "create_time", nullable = false)
-    private Date createTime;
-
-    @Temporal(TemporalType.DATE)
-    @Column(name = "update_time", nullable = false)
-    private Date updateTime;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
+    @OneToMany(mappedBy = "corporation", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OrderBy("updateTime desc")
+//    @JsonIgnore
+    private Set<CorporationComplaints> complaints;
 
     public String getName() {
         return name;
@@ -50,6 +41,34 @@ public class Corporation {
 
     public void setMark(BigDecimal mark) {
         this.mark = mark;
+    }
+
+    public Set<CorporationComplaints> getComplaints() {
+        return complaints;
+    }
+
+    public void setComplaints(Set<CorporationComplaints> complaints) {
+        this.complaints = complaints;
+    }
+
+    @Id
+    @GeneratedValue
+    public Long id;
+
+    @Temporal(TemporalType.DATE)
+    @Column(name = "create_time", nullable = false)
+    private Date createTime;
+
+    @Temporal(TemporalType.DATE)
+    @Column(name = "update_time", nullable = false)
+    private Date updateTime;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Date getCreateTime() {

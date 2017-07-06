@@ -13,7 +13,9 @@ spring:
     show-sql: true
   thymeleaf:
     cache: false
-
+  http:
+    converters:
+      preferred-json-mapper: fastjson
 logging:
   level: debug
 
