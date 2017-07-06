@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>就是想吐槽一下</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="shortcut icon" type="image/x-icon" href="images/fav-icon.png"/>
+    <script type="application/x-javascript"> addEventListener("load", function () {
+        setTimeout(hideURLbar, 0);
+    }, false);
+    function hideURLbar() {
+        window.scrollTo(0, 1);
+    } </script>
+
+
+</head>
+<body>
+<div th:include="header :: header"></div>
+<div class="content">
+    <div class="wrap">
+        <div id="main" role="main">
+            <ul id="tiles">
+            </ul>
+        </div>
+    </div>
+</div>
+<script src="js/jquery.imagesloaded.js"></script>
+<script src="js/jquery.wookmark.js"></script>
+<script src="js/index.js"></script>
+<div th:include="footer :: footer"></div>
+</body>
+<script id="indexLi" type="text/x-handlebars-template">
+    {{#each data.datas}}
+    <li>
+        <!--<img src="images/img2.jpg" width="200" height="299">-->
+        <div class="post-info">
+            <div class="post-basic-info">
+                <h3><a href="javascript:;">{{name}}</a></h3>
+                <span><a href="javascript:;"><label> </label>{{mark}}</a></span>
+                <p>最后更新:{{updateTime}}</p>
+            </div>
+            <div class="post-info-rate-share">
+                <div class="rateit">
+                    <span> </span>
+                </div>
+                <div class="post-share">
+                    <span> </span>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+    </li>
+    {{/each}}
+</script>
+</html>
+
