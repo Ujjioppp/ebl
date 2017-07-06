@@ -14,7 +14,7 @@ import java.util.Date;
 public class CorporationComplaints extends BaseEntity {
 
 //    @Column(name = "corporation_id")
-    @ManyToOne(targetEntity = Corporation.class,fetch = FetchType.EAGER)
+    @ManyToOne(targetEntity = Corporation.class,fetch = FetchType.LAZY)
     @JoinColumn(name = "corporation_id")
     @JsonIgnore
     private Corporation corporation;

@@ -22,7 +22,7 @@ public class Corporation extends BaseEntity {
     @Column(name = "mark", nullable = false, length = 5, scale = 2)
     private BigDecimal mark;
 
-    @OneToMany(mappedBy = "corporation", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "corporation", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @OrderBy("updateTime desc")
 //    @JsonIgnore
     private Set<CorporationComplaints> complaints;
