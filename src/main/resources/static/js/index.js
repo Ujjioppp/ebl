@@ -2,7 +2,7 @@
  * Created by yeli on 05/07/2017.
  */
 (function ($){
-    var pageNum = 1,
+    var pageNum = 0,
         $tiles = $('#tiles'),
         $handler = $('li', $tiles),
         $main = $('#main'),
@@ -22,19 +22,26 @@
             url:"corporation/list",
             data:{pageNum:pageNum++},
             dataType:"json",
+            complete: function(XMLHttpRequest, textStatus) {layer.msg("error"); },
             success:function(data){
                 layer.closeAll('loading');
-                console.log(data.data);
-                if(data && data.data.datas){
+                if(data && data.data.content){
                     // 抓取模板数据
                     var template = $('#indexLi').html();
                     // 编译模板
                     template = Handlebars.compile(template);
                     // 把数据传送到模板
-                    var html = template(data);
+                    var html = template(data.data);
                     $tiles.append(html);
 
                     applyLayout();
+
+
+                    if(data.data.last) {
+                        console.log('unbind');
+                        //最后一页,解绑翻页
+                        $window.unbind('scroll.wookmark', onScroll);
+                    }
                 }else{
                     layer.msg('没有更多数据了', function(){
                         //关闭后的操作

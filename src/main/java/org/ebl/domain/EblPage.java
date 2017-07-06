@@ -5,20 +5,20 @@ import java.util.List;
 /**
  * Created by yeli on 05/07/2017.
  */
-public class Page<T> {
-    private Integer pageNum = 1;
+public class EblPage<T> {
+    private Integer pageNum = 0;
 
     private Long totalRecord = 0l;
 
     private Long totalPageNum = 1l;
 
-    private Integer pageSize = 20;
+    private Integer pageSize = 1;
 
     private List<T> datas;
 
-    public Page(){}
+    public EblPage(){}
 
-    public Page(Long totalRecord , List<T> datas){
+    public EblPage(Long totalRecord , List<T> datas){
         this.totalRecord = totalRecord;
         this.datas = datas;
     }

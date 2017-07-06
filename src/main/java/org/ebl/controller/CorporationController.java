@@ -1,9 +1,11 @@
 package org.ebl.controller;
 
-import org.ebl.domain.Page;
+import org.ebl.domain.EblPage;
 import org.ebl.domain.Result;
+import org.ebl.entity.Corporation;
 import org.ebl.service.CorporationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,8 +20,8 @@ public class CorporationController {
     private CorporationService corporationService;
 
     @GetMapping("/list")
-    public Result list(Page page){
-        page = this.corporationService.list(page);
-        return Result.buildSuccessResult(page);
+    public Result list(EblPage page){
+        Page<Corporation> datas = this.corporationService.list(page);
+        return Result.buildSuccessResult(datas);
     }
 }
