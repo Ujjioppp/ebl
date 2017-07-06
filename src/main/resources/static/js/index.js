@@ -16,22 +16,31 @@
         };
 
     function loadContent() {
+        layer.load();
         $.ajax({
             type:"get",
             url:"corporation/list",
-            data:{pageNum:pageNum},
+            data:{pageNum:pageNum++},
             dataType:"json",
             success:function(data){
-                console.log(data);
-                // 抓取模板数据
-                var template = $('#indexLi').html();
-                // 编译模板
-                template = Handlebars.compile(template);
-                // 把数据传送到模板
-                var html = template(data);
-                $tiles.append(html);
+                layer.closeAll('loading');
+                console.log(data.data);
+                if(data && data.data.datas){
+                    // 抓取模板数据
+                    var template = $('#indexLi').html();
+                    // 编译模板
+                    template = Handlebars.compile(template);
+                    // 把数据传送到模板
+                    var html = template(data);
+                    $tiles.append(html);
 
-                applyLayout();
+                    applyLayout();
+                }else{
+                    layer.msg('没有更多数据了', function(){
+                        //关闭后的操作
+                    });
+                }
+
             }
         });
     }
@@ -60,12 +69,13 @@
             closeToBottom = ($window.scrollTop() + winHeight > $document.height() - 100);
 
         if (closeToBottom) {
-            // Get the first then items from the grid, clone them, and add them to the bottom of the grid
-            var $items = $('li', $tiles),
-                $firstTen = $items.slice(0, 10);
-            $tiles.append($firstTen.clone());
+            loadContent();
 
-            applyLayout();
+            // Get the first then items from the grid, clone them, and add them to the bottom of the grid
+            // var $items = $('li', $tiles),
+            //     $firstTen = $items.slice(0, 10);
+            // $tiles.append($firstTen.clone());
+            // applyLayout();
         }
     };
 
