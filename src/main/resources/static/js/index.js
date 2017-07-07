@@ -25,6 +25,7 @@
             complete: function(XMLHttpRequest, textStatus) {},
             success:function(data){
                 layer.closeAll('loading');
+                console.log(data);
                 if(data && data.data.content){
                     // 抓取模板数据
                     var template = $('#indexLi').html();

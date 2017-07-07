@@ -29,11 +29,12 @@
                     </tbody>
 
                 </table>
+
+                <div id="complaintsPage"></div>
             </div>
         </div>
     </div>
 </div>
-
 <div th:include="footer :: footer"></div>
 </body>
 <script id="complaintsTable" type="text/x-handlebars-template">
@@ -46,7 +47,6 @@
     </tr>
     {{/each}}
 </script>
-<script th:src="@{/js/jquery.imagesloaded.js}" src=""></script>
-<script th:src="@{/js/jquery.wookmark.js}" src=""></script>
+<script th:src="@{/laypage/laypage.js}"></script>
 <script th:src="@{/js/complaints.js}"></script>
 </html>
