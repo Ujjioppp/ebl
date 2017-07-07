@@ -28,4 +28,9 @@ public class CorporationServiceImpl implements CorporationService{
 //        page.setTotalRecord(count);
         return datas;
     }
+
+    @Override
+    public Corporation findOne(Long id) {
+        return this.corporationRepository.findOne(id);
+    }
 }

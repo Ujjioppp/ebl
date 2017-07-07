@@ -18,6 +18,7 @@ public class CorporationComplaintsController {
     @Autowired
     private CorporationComplaintsService corporationComplaintsService;
 
+    @RequestMapping("/list")
     public Result list(EblPage page){
         Page<CorporationComplaints> datas = this.corporationComplaintsService.list(page);
         return Result.buildSuccessResult(datas);

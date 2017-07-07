@@ -10,4 +10,6 @@ import org.springframework.data.domain.Page;
  */
 public interface CorporationService {
     Page<Corporation> list(EblPage page);
+
+    Corporation findOne(Long id);
 }
