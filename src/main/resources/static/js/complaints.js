@@ -28,7 +28,7 @@
                     laypage({
                         cont: 'complaintsPage', //容器。值支持id名、原生dom对象，jquery对象,
                         pages: data.data.totalPages, //总页数
-                        curr: pageNum || 0,
+                        curr: pageNum || 1,
                         skip: true, //是否开启跳页
                         skin: 'molv', //加载内置皮肤，也可以直接赋值16进制颜色值，如:#c00
                         groups: 7, //连续显示分页数
