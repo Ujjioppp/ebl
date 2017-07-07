@@ -1,7 +1,7 @@
 package org.ebl.service.impl;
 
 import org.ebl.domain.EblPage;
-import org.ebl.dao.CorporationRepository;
+import org.ebl.repository.CorporationRepository;
 import org.ebl.entity.Corporation;
 import org.ebl.service.CorporationService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -3,7 +3,8 @@
 <head>
     <title>就是想吐槽一下</title>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <link rel="shortcut icon" type="image/x-icon" href="images/fav-icon.png"/>
+    <meta name="renderer" content="webkit"/>
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{/images/fav-icon.png}" href=""/>
     <script type="application/x-javascript"> addEventListener("load", function () {
         setTimeout(hideURLbar, 0);
     }, false);
@@ -23,14 +24,14 @@
         </div>
     </div>
 </div>
-<script src="js/jquery.imagesloaded.js"></script>
-<script src="js/jquery.wookmark.js"></script>
-<script src="js/index.js"></script>
+<script th:src="@{/js/jquery.imagesloaded.js}" src=""></script>
+<script th:src="@{/js/jquery.wookmark.js}" src=""></script>
+<script th:src="@{/js/index.js}" src=""></script>
 <div th:include="footer :: footer"></div>
 </body>
 <script id="indexLi" type="text/x-handlebars-template">
     {{#each content}}
-    <li>
+    <li onclick="window.location.href='/complaints/{{id}}'">
         <!--<img src="images/img2.jpg" width="200" height="299">-->
         <div class="post-info">
             <div class="post-basic-info">

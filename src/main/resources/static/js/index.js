@@ -22,7 +22,7 @@
             url:"corporation/list",
             data:{pageNum:pageNum++},
             dataType:"json",
-            complete: function(XMLHttpRequest, textStatus) {layer.msg("error"); },
+            complete: function(XMLHttpRequest, textStatus) {},
             success:function(data){
                 layer.closeAll('loading');
                 if(data && data.data.content){

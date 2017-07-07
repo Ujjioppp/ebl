@@ -16,6 +16,10 @@ spring:
   http:
     converters:
       preferred-json-mapper: fastjson
+  mvc:
+    static-path-pattern: /**
+  resources:
+    static-locations: classpath:/templates/,classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/
 logging:
   level: debug
 

@@ -1,10 +1,14 @@
 
 <div th:fragment="header">
-    <link href="css/style.css" rel='stylesheet' type='text/css' />
-    <link rel="stylesheet" href="css/main.css"/>
+    <link th:href="@{/css/style.css}" href="" rel='stylesheet' type='text/css' />
+    <link th:href="@{/css/main.css}" rel="stylesheet" href=""/>
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
     <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="http://apps.bdimg.com/libs/layer/2.1/layer.js"></script>
     <script src="http://apps.bdimg.com/libs/handlebars.js/2.0.0-alpha.4/handlebars.min.js"></script>
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script type="text/javascript">
         var $ = jQuery.noConflict();
         $(function() {
@@ -30,7 +34,7 @@
     <div class="header">
         <div class="wrap">
             <div class="logo">
-                <a href="index.html"><img src="images/criminal.png" title="blacklist"/></a>
+                <a href="index.html"><img th:src="@{/images/criminal.png}" src="" title="blacklist"/></a>
             </div>
             <div class="nav-icon">
                 <a href="#" class="right_bt" id="activator"><span> </span> </a>
@@ -63,7 +67,7 @@
             <div class="userinfo">
                 <div class="user">
                     <ul>
-                        <li><a href="#"><img src="images/user-pic.png" title="user-name"/><span>yeli</span></a></li>
+                        <li><a href="#"><img th:src="@{/images/user-pic.png}" src="" title="user-name"/><span>yeli</span></a></li>
                     </ul>
                 </div>
             </div>

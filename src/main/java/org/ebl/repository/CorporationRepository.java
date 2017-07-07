@@ -1,4 +1,4 @@
-package org.ebl.dao;
+package org.ebl.repository;
 
 import org.ebl.entity.Corporation;
 import org.springframework.data.jpa.repository.JpaRepository;
