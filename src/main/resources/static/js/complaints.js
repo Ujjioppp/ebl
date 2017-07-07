@@ -8,7 +8,7 @@ function loadContent() {
     $.ajax({
         type: "get",
         url: "list",
-        data: {pageNum: pageNum++},
+        data: {pageNum: pageNum++,id:$("#target").val()},
         dataType: "json",
         complete: function (XMLHttpRequest, textStatus) {
         },

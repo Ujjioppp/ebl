@@ -1,6 +1,7 @@
 package org.ebl.service.impl;
 
 import org.ebl.domain.EblPage;
+import org.ebl.entity.Corporation;
 import org.ebl.entity.CorporationComplaints;
 import org.ebl.repository.CorporationComplaintsRepository;
 import org.ebl.service.CorporationComplaintsService;
@@ -19,9 +20,9 @@ public class CorporationComplaintsServiceImpl implements CorporationComplaintsSe
     @Autowired
     private CorporationComplaintsRepository corporationComplaintsRepository;
 
-    public Page<CorporationComplaints> list(EblPage page){
+    public Page<CorporationComplaints> list(EblPage page,Corporation corporation){
         Pageable pageable = new PageRequest(page.getPageNum(),page.getPageSize(), Sort.Direction.DESC,"updateTime");
-        Page<CorporationComplaints> datas = this.corporationComplaintsRepository.findAll(pageable);
+        Page<CorporationComplaints> datas = this.corporationComplaintsRepository.findAllByCorporation(pageable,corporation);
         return datas;
     }
 
