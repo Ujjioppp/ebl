@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 /**
  * Created by yeli on 05/07/2017.
  */
@@ -22,6 +24,12 @@ public class CorporationController {
     @GetMapping("/list")
     public Result list(EblPage page){
         Page<Corporation> datas = this.corporationService.list(page);
+        return Result.buildSuccessResult(datas);
+    }
+
+    @GetMapping("/allList")
+    public Result allList(){
+        List<Corporation> datas = this.corporationService.list();
         return Result.buildSuccessResult(datas);
     }
 }

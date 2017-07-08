@@ -11,6 +11,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Created by yeli on 05/07/2017.
  */
@@ -27,6 +29,11 @@ public class CorporationServiceImpl implements CorporationService{
 //        page.setDatas(datas);
 //        page.setTotalRecord(count);
         return datas;
+    }
+
+    @Override
+    public List<Corporation> list(){
+        return this.corporationRepository.findAll();
     }
 
     @Override

@@ -2,7 +2,6 @@ package org.ebl.controller;
 
 import org.ebl.service.CorporationService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,7 +25,12 @@ public class PageController {
     @GetMapping("/complaints/{id}")
     public String corporationComplaints(@PathVariable("id") Long id, Model model) {
 
-        model.addAttribute("target",this.corporationService.findOne(id));
+        model.addAttribute("target", this.corporationService.findOne(id));
         return "complaints";
+    }
+
+    @GetMapping("/complain")
+    public String complain(){
+        return "complain";
     }
 }
