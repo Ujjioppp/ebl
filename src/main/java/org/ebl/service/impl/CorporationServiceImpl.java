@@ -4,6 +4,7 @@ import org.ebl.domain.EblPage;
 import org.ebl.repository.CorporationRepository;
 import org.ebl.entity.Corporation;
 import org.ebl.service.CorporationService;
+import org.hibernate.criterion.Example;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -24,10 +25,7 @@ public class CorporationServiceImpl implements CorporationService{
     @Override
     public Page<Corporation> list(EblPage page){
         Pageable pageable = new PageRequest(page.getPageNum(),page.getPageSize(),new Sort(Sort.Direction.DESC,"updateTime"));
-//        Long count = this.corporationRepository.count();
         Page<Corporation> datas = this.corporationRepository.findAll(pageable);
-//        page.setDatas(datas);
-//        page.setTotalRecord(count);
         return datas;
     }
 

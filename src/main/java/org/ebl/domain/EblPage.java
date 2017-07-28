@@ -12,7 +12,7 @@ public class EblPage<T> {
 
     private Long totalPageNum = 1l;
 
-    private Integer pageSize = 1;
+    private Integer pageSize = 20;
 
     private List<T> datas;
 

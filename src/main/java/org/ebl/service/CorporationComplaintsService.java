@@ -10,4 +10,6 @@ import org.springframework.data.domain.Page;
  */
 public interface CorporationComplaintsService {
     Page<CorporationComplaints> list(EblPage page,Corporation corporation);
+
+    CorporationComplaints add(CorporationComplaints corporationComplaints);
 }

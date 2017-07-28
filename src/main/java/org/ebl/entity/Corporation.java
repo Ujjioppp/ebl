@@ -2,6 +2,7 @@ package org.ebl.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.ebl.util.DateUtil;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -85,5 +86,17 @@ public class Corporation extends BaseEntity {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+
+    @PrePersist
+    void prePersist(){
+        this.setCreateTime(DateUtil.now());
+        this.setUpdateTime(DateUtil.now());
+    }
+
+    @PreUpdate
+    void preUpdate(){
+        this.setUpdateTime(DateUtil.now());
     }
 }

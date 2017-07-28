@@ -1,7 +1,9 @@
 package org.ebl.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.ebl.util.DateUtil;
 import org.hibernate.annotations.Type;
+import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -14,12 +16,13 @@ import java.util.Date;
 public class CorporationComplaints extends BaseEntity {
 
 //    @Column(name = "corporation_id")
-    @ManyToOne(targetEntity = Corporation.class,fetch = FetchType.LAZY)
+    @ManyToOne(targetEntity = Corporation.class,cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     @JoinColumn(name = "corporation_id")
     @JsonIgnore
     private Corporation corporation;
 
     @Column(name = "title", nullable = false, length = 255)
+    @Length(max = 255,message = "最大长度为255")
     private String title;
 
     @Column(name = "content", nullable = false)
@@ -95,5 +98,16 @@ public class CorporationComplaints extends BaseEntity {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    @PrePersist
+    void prePersist(){
+        this.setCreateTime(DateUtil.now());
+        this.setUpdateTime(DateUtil.now());
+    }
+
+    @PreUpdate
+    void preUpdate(){
+        this.setUpdateTime(DateUtil.now());
     }
 }
