@@ -1,6 +1,7 @@
 package org.ebl.controller;
 
-import org.ebl.domain.EblPage;
+import com.github.pagehelper.PageHelper;
+import org.ebl.domain.PageInfo;
 import org.ebl.domain.Result;
 import org.ebl.entity.Corporation;
 import org.ebl.service.CorporationService;
@@ -21,14 +22,14 @@ public class CorporationController {
     private CorporationService corporationService;
 
     @GetMapping("/list")
-    public Result list(EblPage page){
-//        Page<Corporation1> datas = this.corporationService.list(page);
-//        return Result.buildSuccessResult(datas);
-        return null;
+    public Result list(PageInfo page) {
+        PageHelper.startPage(page.getPageNum(), page.getPageSize());
+        List<Corporation> datas = this.corporationService.list();
+        return Result.buildSuccessResult(new PageInfo<Corporation>(datas));
     }
 
     @GetMapping("/allList")
-    public Result allList(){
+    public Result allList() {
         List<Corporation> datas = this.corporationService.list();
         return Result.buildSuccessResult(datas);
     }

@@ -22,15 +22,17 @@
             <ul id="tiles">
             </ul>
         </div>
+        <div id="indexPage"></div>
     </div>
 </div>
 <script th:src="@{/js/jquery.imagesloaded.js}" src=""></script>
 <script th:src="@{/js/jquery.wookmark.js}" src=""></script>
+<script th:src="@{/laypage/laypage.js}"></script>
 <script th:src="@{/js/index.js}" src=""></script>
 <div th:include="footer :: footer"></div>
 </body>
 <script id="indexLi" type="text/x-handlebars-template">
-    {{#each content}}
+    {{#each list}}
     <li onclick="window.location.href='/complaints/{{id}}'">
         <!--<img src="images/img2.jpg" width="200" height="299">-->
         <div class="post-info">
