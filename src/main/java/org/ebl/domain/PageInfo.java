@@ -14,7 +14,7 @@ public class PageInfo<T> implements Serializable {
     //当前页
     private int pageNum;
     //每页的数量
-    private int pageSize = 1;
+    private int pageSize = 3;
     //当前页的数量
     private int size;
     //由于startRow和endRow不常用，这里说个具体的用法

@@ -1,17 +1,21 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>厉害了我的坑</title>
-    <meta charset="utf-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>掉得听了想骂人</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <meta name="renderer" content="webkit"/>
     <link rel="shortcut icon" type="image/x-icon" th:href="@{/images/fav-icon.png}" href=""/>
+    <script type="application/x-javascript"> addEventListener("load", function () {
+        setTimeout(hideURLbar, 0);
+    }, false);
+    function hideURLbar() {
+        window.scrollTo(0, 1);
+    } </script>
+
+
 </head>
 <body>
-
 <div th:include="header :: header"></div>
-
 <div class="content">
     <div class="wrap">
         <div id="main" role="main">
@@ -21,12 +25,12 @@
         <div id="indexPage"></div>
     </div>
 </div>
-
-<div th:include="footer :: footer"></div>
 <script th:src="@{/js/jquery.imagesloaded.js}" src=""></script>
 <script th:src="@{/js/jquery.wookmark.js}" src=""></script>
 <script th:src="@{/laypage/laypage.js}"></script>
 <script th:src="@{/js/index.js}" src=""></script>
+<div th:include="footer :: footer"></div>
+</body>
 <script id="indexLi" type="text/x-handlebars-template">
     {{#each list}}
     <li onclick="window.location.href='/complaints/{{id}}'">
@@ -36,9 +40,9 @@
                 <h3><a href="javascript:;">{{name}}</a></h3>
                 <span><a href="javascript:;"><label> </label>{{mark}}</a></span>
                 {{#each complaints}}
-                {{#if @index}}
-                <p>{{content}}</p>
-                {{/if}}
+                    {{#if @index}}
+                        <p>{{content}}</p>
+                    {{/if}}
                 {{/each}}
                 <p>最后更新:{{updateTime}}</p>
             </div>
@@ -55,6 +59,5 @@
     </li>
     {{/each}}
 </script>
-</body>
 </html>
 
