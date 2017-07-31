@@ -1,39 +1,40 @@
 package org.ebl.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import org.ebl.util.DateUtil;
-
-import javax.persistence.*;
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
-import java.util.Set;
 
-/**
- * Created by yeli on 05/07/2017.
- */
-@Table(name = "corporation")
-@Entity
-@JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler"})
-public class Corporation extends BaseEntity {
+public class Corporation implements Serializable {
+    private Long id;
 
-    @Column(name = "name", nullable = false)
-    private String name;
-
-    @Column(name = "mark", nullable = false, length = 5, scale = 2)
     private BigDecimal mark;
 
-    @OneToMany(mappedBy = "corporation", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @OrderBy("updateTime desc")
-//    @JsonIgnore
-    private Set<CorporationComplaints> complaints;
+    private String name;
 
-    public String getName() {
-        return name;
+    private Date createTime;
+
+    private Date updateTime;
+
+    private static final long serialVersionUID = 1L;
+
+    public Corporation(Long id, BigDecimal mark, String name, Date createTime, Date updateTime) {
+        this.id = id;
+        this.mark = mark;
+        this.name = name;
+        this.createTime = createTime;
+        this.updateTime = updateTime;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public Corporation() {
+        super();
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public BigDecimal getMark() {
@@ -44,32 +45,12 @@ public class Corporation extends BaseEntity {
         this.mark = mark;
     }
 
-    public Set<CorporationComplaints> getComplaints() {
-        return complaints;
+    public String getName() {
+        return name;
     }
 
-    public void setComplaints(Set<CorporationComplaints> complaints) {
-        this.complaints = complaints;
-    }
-
-    @Id
-    @GeneratedValue
-    public Long id;
-
-    @Temporal(TemporalType.DATE)
-    @Column(name = "create_time", nullable = false)
-    private Date createTime;
-
-    @Temporal(TemporalType.DATE)
-    @Column(name = "update_time", nullable = false)
-    private Date updateTime;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+    public void setName(String name) {
+        this.name = name == null ? null : name.trim();
     }
 
     public Date getCreateTime() {
@@ -88,15 +69,34 @@ public class Corporation extends BaseEntity {
         this.updateTime = updateTime;
     }
 
-
-    @PrePersist
-    void prePersist(){
-        this.setCreateTime(DateUtil.now());
-        this.setUpdateTime(DateUtil.now());
+    @Override
+    public boolean equals(Object that) {
+        if (this == that) {
+            return true;
+        }
+        if (that == null) {
+            return false;
+        }
+        if (getClass() != that.getClass()) {
+            return false;
+        }
+        Corporation other = (Corporation) that;
+        return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
+            && (this.getMark() == null ? other.getMark() == null : this.getMark().equals(other.getMark()))
+            && (this.getName() == null ? other.getName() == null : this.getName().equals(other.getName()))
+            && (this.getCreateTime() == null ? other.getCreateTime() == null : this.getCreateTime().equals(other.getCreateTime()))
+            && (this.getUpdateTime() == null ? other.getUpdateTime() == null : this.getUpdateTime().equals(other.getUpdateTime()));
     }
 
-    @PreUpdate
-    void preUpdate(){
-        this.setUpdateTime(DateUtil.now());
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
+        result = prime * result + ((getMark() == null) ? 0 : getMark().hashCode());
+        result = prime * result + ((getName() == null) ? 0 : getName().hashCode());
+        result = prime * result + ((getCreateTime() == null) ? 0 : getCreateTime().hashCode());
+        result = prime * result + ((getUpdateTime() == null) ? 0 : getUpdateTime().hashCode());
+        return result;
     }
 }

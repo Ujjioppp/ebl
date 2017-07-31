@@ -1,80 +1,38 @@
 package org.ebl.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.ebl.util.DateUtil;
-import org.hibernate.annotations.Type;
-import org.hibernate.validator.constraints.Length;
-
-import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
-/**
- * Created by yeli on 06/07/2017.
- */
-@Table(name = "corporation_complaints")
-@Entity
-public class CorporationComplaints extends BaseEntity {
+public class CorporationComplaints implements Serializable {
+    private Long id;
 
-//    @Column(name = "corporation_id")
-    @ManyToOne(targetEntity = Corporation.class,cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-    @JoinColumn(name = "corporation_id")
-    @JsonIgnore
-    private Corporation corporation;
+    private Date createTime;
 
-    @Column(name = "title", nullable = false, length = 255)
-    @Length(max = 255,message = "最大长度为255")
-    private String title;
-
-    @Column(name = "content", nullable = false)
-    @Type(type = "text")
-    private String content;
-
-    @Column(name = "create_user", nullable = false)
     private String createUser;
 
-    public Corporation getCorporation() {
-        return corporation;
-    }
+    private String title;
 
-    public void setCorporation(Corporation corporation) {
-        this.corporation = corporation;
-    }
+    private Date updateTime;
 
-    public String getTitle() {
-        return title;
-    }
+    private Long corporationId;
 
-    public void setTitle(String title) {
+    private String content;
+
+    private static final long serialVersionUID = 1L;
+
+    public CorporationComplaints(Long id, Date createTime, String createUser, String title, Date updateTime, Long corporationId, String content) {
+        this.id = id;
+        this.createTime = createTime;
+        this.createUser = createUser;
         this.title = title;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
+        this.updateTime = updateTime;
+        this.corporationId = corporationId;
         this.content = content;
     }
 
-    public String getCreateUser() {
-        return createUser;
+    public CorporationComplaints() {
+        super();
     }
-
-    public void setCreateUser(String createUser) {
-        this.createUser = createUser;
-    }
-
-    @Id
-    @GeneratedValue
-    public Long id;
-
-    @Temporal(TemporalType.DATE)
-    @Column(name = "create_time", nullable = false)
-    private Date createTime;
-
-    @Temporal(TemporalType.DATE)
-    @Column(name = "update_time", nullable = false)
-    private Date updateTime;
 
     public Long getId() {
         return id;
@@ -92,6 +50,22 @@ public class CorporationComplaints extends BaseEntity {
         this.createTime = createTime;
     }
 
+    public String getCreateUser() {
+        return createUser;
+    }
+
+    public void setCreateUser(String createUser) {
+        this.createUser = createUser == null ? null : createUser.trim();
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title == null ? null : title.trim();
+    }
+
     public Date getUpdateTime() {
         return updateTime;
     }
@@ -100,14 +74,54 @@ public class CorporationComplaints extends BaseEntity {
         this.updateTime = updateTime;
     }
 
-    @PrePersist
-    void prePersist(){
-        this.setCreateTime(DateUtil.now());
-        this.setUpdateTime(DateUtil.now());
+    public Long getCorporationId() {
+        return corporationId;
     }
 
-    @PreUpdate
-    void preUpdate(){
-        this.setUpdateTime(DateUtil.now());
+    public void setCorporationId(Long corporationId) {
+        this.corporationId = corporationId;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content == null ? null : content.trim();
+    }
+
+    @Override
+    public boolean equals(Object that) {
+        if (this == that) {
+            return true;
+        }
+        if (that == null) {
+            return false;
+        }
+        if (getClass() != that.getClass()) {
+            return false;
+        }
+        CorporationComplaints other = (CorporationComplaints) that;
+        return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
+            && (this.getCreateTime() == null ? other.getCreateTime() == null : this.getCreateTime().equals(other.getCreateTime()))
+            && (this.getCreateUser() == null ? other.getCreateUser() == null : this.getCreateUser().equals(other.getCreateUser()))
+            && (this.getTitle() == null ? other.getTitle() == null : this.getTitle().equals(other.getTitle()))
+            && (this.getUpdateTime() == null ? other.getUpdateTime() == null : this.getUpdateTime().equals(other.getUpdateTime()))
+            && (this.getCorporationId() == null ? other.getCorporationId() == null : this.getCorporationId().equals(other.getCorporationId()))
+            && (this.getContent() == null ? other.getContent() == null : this.getContent().equals(other.getContent()));
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
+        result = prime * result + ((getCreateTime() == null) ? 0 : getCreateTime().hashCode());
+        result = prime * result + ((getCreateUser() == null) ? 0 : getCreateUser().hashCode());
+        result = prime * result + ((getTitle() == null) ? 0 : getTitle().hashCode());
+        result = prime * result + ((getUpdateTime() == null) ? 0 : getUpdateTime().hashCode());
+        result = prime * result + ((getCorporationId() == null) ? 0 : getCorporationId().hashCode());
+        result = prime * result + ((getContent() == null) ? 0 : getContent().hashCode());
+        return result;
     }
 }
