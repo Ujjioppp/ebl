@@ -75,24 +75,6 @@
             $handler.wookmark(options);
         });
     }
-    /**
-     * When scrolled all the way to the bottom, add more tiles
-     */
-    function onScroll() {
-        // Check if we're within 100 pixels of the bottom edge of the broser window.
-        var winHeight = window.innerHeight ? window.innerHeight : $window.height(), // iphone fix
-            closeToBottom = ($window.scrollTop() + winHeight > $document.height() - 100);
-
-        if (closeToBottom) {
-            loadContent();
-
-            // Get the first then items from the grid, clone them, and add them to the bottom of the grid
-            // var $items = $('li', $tiles),
-            //     $firstTen = $items.slice(0, 10);
-            // $tiles.append($firstTen.clone());
-            // applyLayout();
-        }
-    };
 
     // Call the layout function for the first time
     applyLayout();

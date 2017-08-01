@@ -4,20 +4,20 @@
   <resultMap id="BaseResultMap" type="org.ebl.entity.CorporationComplaints">
     <constructor>
       <idArg column="id" javaType="java.lang.Long" jdbcType="BIGINT" />
-      <arg column="create_time" javaType="java.util.Date" jdbcType="DATE" />
+      <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
       <arg column="create_user" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="title" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="update_time" javaType="java.util.Date" jdbcType="DATE" />
+      <arg column="update_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
       <arg column="corporation_id" javaType="java.lang.Long" jdbcType="BIGINT" />
     </constructor>
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="org.ebl.entity.CorporationComplaints">
     <constructor>
       <idArg column="id" javaType="java.lang.Long" jdbcType="BIGINT" />
-      <arg column="create_time" javaType="java.util.Date" jdbcType="DATE" />
+      <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
       <arg column="create_user" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="title" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="update_time" javaType="java.util.Date" jdbcType="DATE" />
+      <arg column="update_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
       <arg column="corporation_id" javaType="java.lang.Long" jdbcType="BIGINT" />
       <arg column="content" javaType="java.lang.String" jdbcType="LONGVARCHAR" />
     </constructor>
@@ -138,8 +138,8 @@
     insert into corporation_complaints (id, create_time, create_user, 
       title, update_time, corporation_id, 
       content)
-    values (#{id,jdbcType=BIGINT}, #{createTime,jdbcType=DATE}, #{createUser,jdbcType=VARCHAR}, 
-      #{title,jdbcType=VARCHAR}, #{updateTime,jdbcType=DATE}, #{corporationId,jdbcType=BIGINT}, 
+    values (#{id,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{createUser,jdbcType=VARCHAR}, 
+      #{title,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{corporationId,jdbcType=BIGINT}, 
       #{content,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="org.ebl.entity.CorporationComplaints">
@@ -172,7 +172,7 @@
         #{id,jdbcType=BIGINT},
       </if>
       <if test="createTime != null">
-        #{createTime,jdbcType=DATE},
+        #{createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="createUser != null">
         #{createUser,jdbcType=VARCHAR},
@@ -181,7 +181,7 @@
         #{title,jdbcType=VARCHAR},
       </if>
       <if test="updateTime != null">
-        #{updateTime,jdbcType=DATE},
+        #{updateTime,jdbcType=TIMESTAMP},
       </if>
       <if test="corporationId != null">
         #{corporationId,jdbcType=BIGINT},
@@ -204,7 +204,7 @@
         id = #{record.id,jdbcType=BIGINT},
       </if>
       <if test="record.createTime != null">
-        create_time = #{record.createTime,jdbcType=DATE},
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="record.createUser != null">
         create_user = #{record.createUser,jdbcType=VARCHAR},
@@ -213,7 +213,7 @@
         title = #{record.title,jdbcType=VARCHAR},
       </if>
       <if test="record.updateTime != null">
-        update_time = #{record.updateTime,jdbcType=DATE},
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
       </if>
       <if test="record.corporationId != null">
         corporation_id = #{record.corporationId,jdbcType=BIGINT},
@@ -229,10 +229,10 @@
   <update id="updateByExampleWithBLOBs" parameterType="map">
     update corporation_complaints
     set id = #{record.id,jdbcType=BIGINT},
-      create_time = #{record.createTime,jdbcType=DATE},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
       create_user = #{record.createUser,jdbcType=VARCHAR},
       title = #{record.title,jdbcType=VARCHAR},
-      update_time = #{record.updateTime,jdbcType=DATE},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
       corporation_id = #{record.corporationId,jdbcType=BIGINT},
       content = #{record.content,jdbcType=LONGVARCHAR}
     <if test="_parameter != null">
@@ -242,10 +242,10 @@
   <update id="updateByExample" parameterType="map">
     update corporation_complaints
     set id = #{record.id,jdbcType=BIGINT},
-      create_time = #{record.createTime,jdbcType=DATE},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
       create_user = #{record.createUser,jdbcType=VARCHAR},
       title = #{record.title,jdbcType=VARCHAR},
-      update_time = #{record.updateTime,jdbcType=DATE},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
       corporation_id = #{record.corporationId,jdbcType=BIGINT}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -255,7 +255,7 @@
     update corporation_complaints
     <set>
       <if test="createTime != null">
-        create_time = #{createTime,jdbcType=DATE},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="createUser != null">
         create_user = #{createUser,jdbcType=VARCHAR},
@@ -264,7 +264,7 @@
         title = #{title,jdbcType=VARCHAR},
       </if>
       <if test="updateTime != null">
-        update_time = #{updateTime,jdbcType=DATE},
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
       </if>
       <if test="corporationId != null">
         corporation_id = #{corporationId,jdbcType=BIGINT},
@@ -277,20 +277,20 @@
   </update>
   <update id="updateByPrimaryKeyWithBLOBs" parameterType="org.ebl.entity.CorporationComplaints">
     update corporation_complaints
-    set create_time = #{createTime,jdbcType=DATE},
+    set create_time = #{createTime,jdbcType=TIMESTAMP},
       create_user = #{createUser,jdbcType=VARCHAR},
       title = #{title,jdbcType=VARCHAR},
-      update_time = #{updateTime,jdbcType=DATE},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
       corporation_id = #{corporationId,jdbcType=BIGINT},
       content = #{content,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
   <update id="updateByPrimaryKey" parameterType="org.ebl.entity.CorporationComplaints">
     update corporation_complaints
-    set create_time = #{createTime,jdbcType=DATE},
+    set create_time = #{createTime,jdbcType=TIMESTAMP},
       create_user = #{createUser,jdbcType=VARCHAR},
       title = #{title,jdbcType=VARCHAR},
-      update_time = #{updateTime,jdbcType=DATE},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
       corporation_id = #{corporationId,jdbcType=BIGINT}
     where id = #{id,jdbcType=BIGINT}
   </update>

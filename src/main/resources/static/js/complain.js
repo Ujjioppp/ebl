@@ -14,7 +14,6 @@ $.validator.setDefaults({
             },
             success: function (data) {
                 layer.closeAll('loading');
-                alert(data.suc);
                 if (data && data.suc) {
                     location.href = "complaints/" + data.data;
                 } else {

@@ -9,14 +9,14 @@
         $.ajax({
             type: "get",
             url: "list",
-            data: {pageNum: pageNum-1||0,id:$("#target").val()},
+            data: {pageNum: pageNum||1,corporationId:$("#target").val()},
             dataType: "json",
             complete: function (XMLHttpRequest, textStatus) {
             },
             success: function (data) {
                 layer.closeAll('loading');
                 console.log(data)
-                if (data && data.data.content) {
+                if (data) {
                     // 抓取模板数据
                     var template = $('#complaintsTable').html();
                     // 编译模板

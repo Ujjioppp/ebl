@@ -1,5 +1,9 @@
 package org.ebl.controller;
 
+import com.github.pagehelper.PageHelper;
+import org.ebl.domain.PageInfo;
+import org.ebl.entity.CorporationComplaints;
+import org.ebl.service.CorporationComplaintsService;
 import org.ebl.service.CorporationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +21,9 @@ public class PageController {
     @Autowired
     private CorporationService corporationService;
 
+    @Autowired
+    private CorporationComplaintsService corporationComplaintsService;
+
     @GetMapping("/")
     public String index() {
         return "index";
@@ -24,7 +31,6 @@ public class PageController {
 
     @GetMapping("/complaints/{id}")
     public String corporationComplaints(@PathVariable("id") Long id, Model model) {
-
         model.addAttribute("target", this.corporationService.findOne(id));
         return "complaints";
     }
