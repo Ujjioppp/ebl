@@ -51,6 +51,8 @@ public class CorporationComplaintsServiceImpl implements CorporationComplaintsSe
             this.corporationMapper.insertSelective(corporation);
         }else{
             corporation = tempCorporations.get(0);
+            corporation.setUpdateTime(DateUtil.now());
+            this.corporationMapper.updateByPrimaryKeySelective(corporation);
         }
         corporationComplaints.setCreateUser(IpUtil.getLocalIp(request));
         corporationComplaints.setCorporationId(corporation.getId());
