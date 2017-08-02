@@ -40,4 +40,9 @@ public class PageController {
     public String complain(){
         return "complain";
     }
+
+    @GetMapping("/about")
+    public String about(){
+        return "about";
+    }
 }
