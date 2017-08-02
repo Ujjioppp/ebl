@@ -4,14 +4,14 @@
     <title>厉害了我的坑</title>
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
     <meta name="renderer" content="webkit"/>
     <link rel="shortcut icon" type="image/x-icon" th:href="@{/images/fav-icon.png}" href=""/>
 </head>
 <body>
 
 <div th:include="header :: header"></div>
-
+<input type="hidden" name="name" th:value="${name}"/>
 <div class="content">
     <div class="wrap">
         <div id="main" role="main">
@@ -23,10 +23,6 @@
 </div>
 
 <div th:include="footer :: footer"></div>
-<script th:src="@{/js/jquery.imagesloaded.js}" src=""></script>
-<script th:src="@{/js/jquery.wookmark.js}" src=""></script>
-<script th:src="@{/laypage/laypage.js}"></script>
-<script th:src="@{/js/index.js}" src=""></script>
 <script id="indexLi" type="text/x-handlebars-template">
     {{#each list}}
     <li onclick="window.location.href='/complaints/{{id}}'">
@@ -55,6 +51,10 @@
     </li>
     {{/each}}
 </script>
+<script th:src="@{/js/jquery.imagesloaded.js}" src=""></script>
+<script th:src="@{/js/jquery.wookmark.js}" src=""></script>
+<script th:src="@{/laypage/laypage.js}"></script>
+<script th:src="@{/js/index.js}" src=""></script>
 </body>
 </html>
 

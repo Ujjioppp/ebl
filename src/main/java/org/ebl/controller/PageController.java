@@ -25,7 +25,8 @@ public class PageController {
     private CorporationComplaintsService corporationComplaintsService;
 
     @GetMapping("/")
-    public String index() {
+    public String index(String k,Model model) {
+        model.addAttribute("name",k);
         return "index";
     }
 

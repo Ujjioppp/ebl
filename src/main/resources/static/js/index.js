@@ -20,7 +20,7 @@
         $.ajax({
             type:"get",
             url:"corporation/list",
-            data:{pageNum:pageNum||1},
+            data:{pageNum:pageNum||1,name:$("input[name='name']").val()},
             dataType:"json",
             complete: function(XMLHttpRequest, textStatus) {},
             success:function(data){

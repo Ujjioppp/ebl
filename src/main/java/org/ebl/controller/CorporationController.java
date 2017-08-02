@@ -22,9 +22,9 @@ public class CorporationController {
     private CorporationService corporationService;
 
     @GetMapping("/list")
-    public Result list(PageInfo page) {
+    public Result list(PageInfo page, Corporation corporation) {
         PageHelper.startPage(page.getPageNum(), page.getPageSize());
-        List<Corporation> datas = this.corporationService.list();
+        List<Corporation> datas = this.corporationService.list(corporation);
         return Result.buildSuccessResult(new PageInfo<Corporation>(datas));
     }
 

@@ -21,6 +21,16 @@
                     var template = $('#complaintsTable').html();
                     // 编译模板
                     template = Handlebars.compile(template);
+                    // 这是截取字符串的方法
+                    Handlebars.registerHelper("titleMethod",function(str) {
+                        if(str==null || str=="") {
+                            return str;
+                        }
+                        if(str.length > 20){
+                            return str.substring(0,20) + "...";
+                        }
+                        return str;
+                    });
                     // 把数据传送到模板
                     var html = template(data.data);
                     $content.html(html);
