@@ -25,8 +25,8 @@ public class PageController {
     private CorporationComplaintsService corporationComplaintsService;
 
     @GetMapping("/")
-    public String index(String k,Model model) {
-        model.addAttribute("name",k);
+    public String index(String k, Model model) {
+        model.addAttribute("name", k);
         return "index";
     }
 
@@ -36,13 +36,19 @@ public class PageController {
         return "complaints";
     }
 
+    @GetMapping("/complaints_detail/{id}")
+    public String complaintsDetail(@PathVariable("id") Long id, Model model) {
+        model.addAttribute("target",this.corporationComplaintsService.findOne(id));
+        return "complaints_detail";
+    }
+
     @GetMapping("/complain")
-    public String complain(){
+    public String complain() {
         return "complain";
     }
 
     @GetMapping("/about")
-    public String about(){
+    public String about() {
         return "about";
     }
 }

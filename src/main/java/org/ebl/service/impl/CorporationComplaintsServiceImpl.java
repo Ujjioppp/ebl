@@ -29,6 +29,11 @@ public class CorporationComplaintsServiceImpl implements CorporationComplaintsSe
     @Autowired
     private CorporationMapper corporationMapper;
 
+    @Override
+    public CorporationComplaints findOne(Long id) {
+        return this.corporationComplaintsMapper.selectByPrimaryKey(id);
+    }
+
     public List<CorporationComplaints> list(CorporationComplaints corporationComplaints) {
         CorporationComplaintsExample corporationComplaintsExample = new CorporationComplaintsExample();
         corporationComplaintsExample.setOrderByClause("update_time desc");
@@ -48,13 +53,14 @@ public class CorporationComplaintsServiceImpl implements CorporationComplaintsSe
             corporation.setMark(BigDecimal.ZERO);
             corporation.setCreateTime(DateUtil.now());
             corporation.setUpdateTime(DateUtil.now());
-            this.corporationMapper.insertSelective(corporation);
+            this.corporationMapper.insert(corporation);
         }else{
             corporation = tempCorporations.get(0);
             corporation.setUpdateTime(DateUtil.now());
             this.corporationMapper.updateByPrimaryKeySelective(corporation);
         }
         corporationComplaints.setCreateUser(IpUtil.getLocalIp(request));
+        corporationComplaints.setIp(IpUtil.getLocalIp(request));
         corporationComplaints.setCorporationId(corporation.getId());
         corporationComplaints.setCreateTime(DateUtil.now());
         corporationComplaints.setUpdateTime(DateUtil.now());

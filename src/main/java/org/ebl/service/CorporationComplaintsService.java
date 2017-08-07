@@ -11,6 +11,8 @@ import java.util.List;
  * Created by yeli on 06/07/2017.
  */
 public interface CorporationComplaintsService {
+    CorporationComplaints findOne(Long id);
+
     List<CorporationComplaints> list(CorporationComplaints corporationComplaints);
 
     CorporationComplaints add(Corporation corporation,CorporationComplaints corporationComplaints,HttpServletRequest request);

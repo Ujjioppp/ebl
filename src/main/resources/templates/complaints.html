@@ -20,8 +20,7 @@
                     <tr>
                         <th width="10%"><span class="glyphicon glyphicon-asterisk"></span></th>
                         <th width="50%">标题</th>
-                        <th width="20%">创建时间</th>
-                        <th width="20%">最后修改时间</th>
+                        <th width="20%">时间</th>
                     </tr>
                     </thead>
                     <tbody id="content">
@@ -31,6 +30,7 @@
                 </table>
 
                 <div id="complaintsPage"></div>
+                <a class="btn btn-primary" href="javascript:history.go(-1);">返回</a>
             </div>
         </div>
     </div>
@@ -41,9 +41,8 @@
     {{#each list}}
     <tr>
         <td><span class="glyphicon glyphicon-link"></span></td>
-        <td>{{titleMethod title}}</td>
+        <td><a href="/complaints_detail/{{id}}">{{titleMethod title}}</a></td>
         <td>{{createTime}}</td>
-        <td>{{updateTime}}</td>
     </tr>
     {{/each}}
 </script>

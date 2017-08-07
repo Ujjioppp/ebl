@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>就是想吐槽一下</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="renderer" content="webkit"/>
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{/images/fav-icon.png}"  href=""/>
+</head>
+<body>
+<div th:include="header :: header"></div>
+<div class="content">
+    <div class="wrap">
+        <div id="main" role="main">
+            <div class="container-fluid table-responsive">
+                <h3 th:text="${target.title}"></h3>
+                <p class="lead"><h1 th:text="${target.content}"></h1></p>
+                <kbd title="attribute" th:text="${#calendars.format(target.createTime,'yyyy-MM-dd HH:mm:ss')}"></kbd>
+                <br/><br/><a class="btn btn-primary btn-sm" href="javascript:history.go(-1);">返回</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:include="footer :: footer"></div>
+</body>
+</html>

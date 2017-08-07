@@ -32,7 +32,7 @@ $.validator.setDefaults({
             'corporation.name': 'required',
             title: {
                 required: true,
-                maxlength: 255
+                maxlength: 50
             },
             content: 'required'
         },

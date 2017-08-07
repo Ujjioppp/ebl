@@ -9,6 +9,7 @@
       <arg column="title" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="update_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
       <arg column="corporation_id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="ip" javaType="java.lang.String" jdbcType="VARCHAR" />
     </constructor>
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="org.ebl.entity.CorporationComplaints">
@@ -19,6 +20,7 @@
       <arg column="title" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="update_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
       <arg column="corporation_id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="ip" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="content" javaType="java.lang.String" jdbcType="LONGVARCHAR" />
     </constructor>
   </resultMap>
@@ -81,7 +83,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, create_time, create_user, title, update_time, corporation_id
+    id, create_time, create_user, title, update_time, corporation_id, ip
   </sql>
   <sql id="Blob_Column_List">
     content
@@ -135,14 +137,20 @@
     </if>
   </delete>
   <insert id="insert" parameterType="org.ebl.entity.CorporationComplaints">
+    <selectKey resultType="java.lang.Long" order="AFTER" keyProperty="id">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
     insert into corporation_complaints (id, create_time, create_user, 
       title, update_time, corporation_id, 
-      content)
+      ip, content)
     values (#{id,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{createUser,jdbcType=VARCHAR}, 
       #{title,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{corporationId,jdbcType=BIGINT}, 
-      #{content,jdbcType=LONGVARCHAR})
+      #{ip,jdbcType=VARCHAR}, #{content,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="org.ebl.entity.CorporationComplaints">
+    <selectKey resultType="java.lang.Long" order="AFTER" keyProperty="id">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
     insert into corporation_complaints
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -162,6 +170,9 @@
       </if>
       <if test="corporationId != null">
         corporation_id,
+      </if>
+      <if test="ip != null">
+        ip,
       </if>
       <if test="content != null">
         content,
@@ -185,6 +196,9 @@
       </if>
       <if test="corporationId != null">
         #{corporationId,jdbcType=BIGINT},
+      </if>
+      <if test="ip != null">
+        #{ip,jdbcType=VARCHAR},
       </if>
       <if test="content != null">
         #{content,jdbcType=LONGVARCHAR},
@@ -218,6 +232,9 @@
       <if test="record.corporationId != null">
         corporation_id = #{record.corporationId,jdbcType=BIGINT},
       </if>
+      <if test="record.ip != null">
+        ip = #{record.ip,jdbcType=VARCHAR},
+      </if>
       <if test="record.content != null">
         content = #{record.content,jdbcType=LONGVARCHAR},
       </if>
@@ -234,6 +251,7 @@
       title = #{record.title,jdbcType=VARCHAR},
       update_time = #{record.updateTime,jdbcType=TIMESTAMP},
       corporation_id = #{record.corporationId,jdbcType=BIGINT},
+      ip = #{record.ip,jdbcType=VARCHAR},
       content = #{record.content,jdbcType=LONGVARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -246,7 +264,8 @@
       create_user = #{record.createUser,jdbcType=VARCHAR},
       title = #{record.title,jdbcType=VARCHAR},
       update_time = #{record.updateTime,jdbcType=TIMESTAMP},
-      corporation_id = #{record.corporationId,jdbcType=BIGINT}
+      corporation_id = #{record.corporationId,jdbcType=BIGINT},
+      ip = #{record.ip,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -269,6 +288,9 @@
       <if test="corporationId != null">
         corporation_id = #{corporationId,jdbcType=BIGINT},
       </if>
+      <if test="ip != null">
+        ip = #{ip,jdbcType=VARCHAR},
+      </if>
       <if test="content != null">
         content = #{content,jdbcType=LONGVARCHAR},
       </if>
@@ -282,6 +304,7 @@
       title = #{title,jdbcType=VARCHAR},
       update_time = #{updateTime,jdbcType=TIMESTAMP},
       corporation_id = #{corporationId,jdbcType=BIGINT},
+      ip = #{ip,jdbcType=VARCHAR},
       content = #{content,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
@@ -291,7 +314,8 @@
       create_user = #{createUser,jdbcType=VARCHAR},
       title = #{title,jdbcType=VARCHAR},
       update_time = #{updateTime,jdbcType=TIMESTAMP},
-      corporation_id = #{corporationId,jdbcType=BIGINT}
+      corporation_id = #{corporationId,jdbcType=BIGINT},
+      ip = #{ip,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

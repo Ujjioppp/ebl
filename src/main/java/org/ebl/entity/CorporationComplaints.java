@@ -20,17 +20,20 @@ public class CorporationComplaints implements Serializable {
 
     private Long corporationId;
 
+    private String ip;
+
     private String content;
 
     private static final long serialVersionUID = 1L;
 
-    public CorporationComplaints(Long id, Date createTime, String createUser, String title, Date updateTime, Long corporationId, String content) {
+    public CorporationComplaints(Long id, Date createTime, String createUser, String title, Date updateTime, Long corporationId, String ip, String content) {
         this.id = id;
         this.createTime = createTime;
         this.createUser = createUser;
         this.title = title;
         this.updateTime = updateTime;
         this.corporationId = corporationId;
+        this.ip = ip;
         this.content = content;
     }
 
@@ -86,6 +89,14 @@ public class CorporationComplaints implements Serializable {
         this.corporationId = corporationId;
     }
 
+    public String getIp() {
+        return ip;
+    }
+
+    public void setIp(String ip) {
+        this.ip = ip == null ? null : ip.trim();
+    }
+
     public String getContent() {
         return content;
     }
@@ -107,12 +118,13 @@ public class CorporationComplaints implements Serializable {
         }
         CorporationComplaints other = (CorporationComplaints) that;
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
-                && (this.getCreateTime() == null ? other.getCreateTime() == null : this.getCreateTime().equals(other.getCreateTime()))
-                && (this.getCreateUser() == null ? other.getCreateUser() == null : this.getCreateUser().equals(other.getCreateUser()))
-                && (this.getTitle() == null ? other.getTitle() == null : this.getTitle().equals(other.getTitle()))
-                && (this.getUpdateTime() == null ? other.getUpdateTime() == null : this.getUpdateTime().equals(other.getUpdateTime()))
-                && (this.getCorporationId() == null ? other.getCorporationId() == null : this.getCorporationId().equals(other.getCorporationId()))
-                && (this.getContent() == null ? other.getContent() == null : this.getContent().equals(other.getContent()));
+            && (this.getCreateTime() == null ? other.getCreateTime() == null : this.getCreateTime().equals(other.getCreateTime()))
+            && (this.getCreateUser() == null ? other.getCreateUser() == null : this.getCreateUser().equals(other.getCreateUser()))
+            && (this.getTitle() == null ? other.getTitle() == null : this.getTitle().equals(other.getTitle()))
+            && (this.getUpdateTime() == null ? other.getUpdateTime() == null : this.getUpdateTime().equals(other.getUpdateTime()))
+            && (this.getCorporationId() == null ? other.getCorporationId() == null : this.getCorporationId().equals(other.getCorporationId()))
+            && (this.getIp() == null ? other.getIp() == null : this.getIp().equals(other.getIp()))
+            && (this.getContent() == null ? other.getContent() == null : this.getContent().equals(other.getContent()));
     }
 
     @Override
@@ -125,6 +137,7 @@ public class CorporationComplaints implements Serializable {
         result = prime * result + ((getTitle() == null) ? 0 : getTitle().hashCode());
         result = prime * result + ((getUpdateTime() == null) ? 0 : getUpdateTime().hashCode());
         result = prime * result + ((getCorporationId() == null) ? 0 : getCorporationId().hashCode());
+        result = prime * result + ((getIp() == null) ? 0 : getIp().hashCode());
         result = prime * result + ((getContent() == null) ? 0 : getContent().hashCode());
         return result;
     }

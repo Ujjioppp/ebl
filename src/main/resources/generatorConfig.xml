@@ -44,7 +44,7 @@
         </javaClientGenerator>
 
 
-        <table schema="mybatis" tableName="corporation" domainObjectName="Corporation">
+        <table schema="mybatis" tableName="corporation_complaints" domainObjectName="CorporationComplaints">
             <property name="constructorBased" value="true" />
             <property name="useActualColumnNames" value="false" />
             <property name="ignoreQualifiersAtRuntime" value="true" />
