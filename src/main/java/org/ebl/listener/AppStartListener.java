@@ -15,6 +15,7 @@ public class AppStartListener implements ApplicationListener<ContextRefreshedEve
 
 //    @Autowired
 //    private RedisService redisService;
+//
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
